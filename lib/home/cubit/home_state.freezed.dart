@@ -357,7 +357,8 @@ class _$Success implements Success {
     return identical(this, other) ||
         (other is Success &&
             (identical(other.locations, locations) ||
-                const DeepCollectionEquality().equals(other.locations, locations)));
+                const DeepCollectionEquality()
+                    .equals(other.locations, locations)));
   }
 
   @override

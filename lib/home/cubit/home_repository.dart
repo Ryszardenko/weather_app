@@ -4,6 +4,6 @@ import 'package:weather_app/services/api_service.dart';
 class HomeRepository {
   const HomeRepository();
 
-  Future<List<Location>> fetchCities({String cityName}) async =>
-      await ApiService().fetchCities(cityName: cityName);
+  Future<List<Location>> fetchCities(String cityName) =>
+      ApiService().fetchCities(cityName);
 }
