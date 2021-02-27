@@ -34,10 +34,7 @@ class HourlyForecastWidget extends StatelessWidget {
               else if (state is Success)
                 return _buildForecasts(state.forecasts);
               else if (state is Error)
-                return Text(
-                  state.message,
-                  style: CustomTextStyle.montserratMedium18,
-                );
+                return ErrorWidget(state.message);
               else
                 return const SizedBox();
             },

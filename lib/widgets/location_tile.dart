@@ -13,20 +13,23 @@ class LocationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        context.read<HomeCubit>().insertLocation(_location);
-        Navigator.pushNamed(context, LocationRoute.routeName,
-            arguments: _location);
-      },
-      tileColor: CustomColor.charlestonGreen,
-      title: Text(
-        _location.localizedName,
-        style: CustomTextStyle.montserratBold18,
-      ),
-      subtitle: Text(
-        '${_location.administrativeArea.localizedName}, ${_location.country.id}',
-        style: CustomTextStyle.montserratRegular16,
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      color: CustomColor.charlestonGreen,
+      child: ListTile(
+        onTap: () async {
+          await Navigator.pushNamed(context, LocationRoute.routeName,
+              arguments: _location);
+          context.read<HomeCubit>().insertLocation(_location);
+        },
+        title: Text(
+          _location.localizedName,
+          style: CustomTextStyle.montserratBold18,
+        ),
+        subtitle: Text(
+          '${_location.administrativeArea.localizedName}, ${_location.country.id}',
+          style: CustomTextStyle.montserratRegular16,
+        ),
       ),
     );
   }

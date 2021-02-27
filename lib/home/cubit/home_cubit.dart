@@ -18,11 +18,10 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> searchCities({String cityName}) async {
-    emit(HomeState.loading());
-
     if (cityName?.isEmpty == true)
       emit(HomeState.initial());
     else if (cityName.length > 2) {
+      emit(HomeState.loading());
       if (_isCityNameValid(cityName)) {
         final response = await _fetchCities(cityName);
         response.fold(

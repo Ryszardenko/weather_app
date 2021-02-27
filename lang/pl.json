@@ -15,5 +15,10 @@
   "error_try_again_later": "Wystąpił błąd. Spróbuj ponownie później.",
   "history_retrieval_error": "Błąd pobierania historii wyszukiwania.",
   "http_exception": "Błąd połączenia",
-  "format_exception": "Nieprawidłowa odpowiedź z serwera"
+  "format_exception": "Nieprawidłowa odpowiedź z serwera",
+  "location_services_disabled": "Usługi lokalizacyjne są wyłaczone.",
+  "location_permissions_permanently_denied": "Trwały brak pozwolenia na dostep do lokalizacji, nie możemy prosić o uprawnienia.",
+  "location_permissions_are_denied": "Odmowa dostępu do lokalizacji. Obecnie:",
+  "getting_your_localization_weather": "Trwa pobieranie pogody dla Twojej lokalizacji...",
+  "you_are_in": "Jesteś w"
 }

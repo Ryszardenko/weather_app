@@ -15,5 +15,10 @@
   "error_try_again_later": "An error occured. Please try again later.",
   "history_retrieval_error": "An error while retrieving search history.",
   "http_exception": "Connection error",
-  "format_exception": "Invalid response from the server"
+  "format_exception": "Invalid response from the server",
+  "location_services_disabled": "Location services are disabled.",
+  "location_permissions_permanently_denied": "Location permissions are permantly denied, we cannot request permissions.",
+  "location_permissions_are_denied": "Location permissions are denied. Actual value:",
+  "getting_your_localization_weather": "Downloading your location weather...",
+  "you_are_in": "You are in"
 }

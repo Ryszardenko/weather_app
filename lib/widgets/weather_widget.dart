@@ -6,8 +6,8 @@ import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:weather_app/extensions/double_extensions.dart';
 
-class LocationWidget extends StatelessWidget {
-  const LocationWidget(
+class WeatherWidget extends StatelessWidget {
+  const WeatherWidget(
     this._weather, {
     Key key,
   }) : super(key: key);
@@ -25,6 +25,7 @@ class LocationWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          _buildWeatherText(),
           _buildMainInfo(),
           _buildInfoRow(
             Strings.realFeel,
@@ -49,6 +50,16 @@ class LocationWidget extends StatelessWidget {
     );
   }
 
+  Align _buildWeatherText() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Text(
+        _weather.weatherText,
+        style: CustomTextStyle.montserratRegular16,
+      ),
+    );
+  }
+
   Row _buildMainInfo() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,21 +69,12 @@ class LocationWidget extends StatelessWidget {
           height: 80,
           fit: BoxFit.fitHeight,
         ),
-        Column(
-          children: [
-            Text(
-              _weather.weatherText,
-              style: CustomTextStyle.montserratRegular16,
-            ),
-            Text(
-              '${_weather.temperature.metric.value}°C',
-              style: CustomTextStyle.montserratRegular16.copyWith(
-                fontSize: 50,
-                color:
-                    _weather.temperature.metric.value.setColorDependsOnValue(),
-              ),
-            ),
-          ],
+        Text(
+          '${_weather.temperature.metric.value}°C',
+          style: CustomTextStyle.montserratRegular16.copyWith(
+            fontSize: 50,
+            color: _weather.temperature.metric.value.setColorDependsOnValue(),
+          ),
         ),
       ],
     );

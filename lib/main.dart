@@ -11,6 +11,7 @@ import 'package:weather_app/home/location/ui/location_route.dart';
 import 'package:weather_app/home/ui/home_route.dart';
 import 'package:weather_app/presentation/app_localizations.dart';
 import 'package:weather_app/presentation/color.dart';
+import 'package:weather_app/widgets/current/cubit/current_location_repository.dart';
 import 'package:weather_app/widgets/history/cubit/history_repository.dart';
 import 'package:weather_app/widgets/hour/cubit/hourly_forecast_repository.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider(create: (_) => SearchHistoryRepository(database)),
         Provider(create: (_) => HourlyForecastRepository()),
+        Provider(create: (_) => CurrentLocationRepository()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

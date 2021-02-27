@@ -12,10 +12,10 @@ class LocationCubit extends Cubit<LocationState> {
   final LocationRepository _repository;
 
   void init(String locationKey) {
-    if (state is Initial) fetchCurrentWeather(locationKey);
+    if (state is Initial) _fetchCurrentWeather(locationKey);
   }
 
-  Future<void> fetchCurrentWeather(String locationKey) async {
+  Future<void> _fetchCurrentWeather(String locationKey) async {
     emit(LocationState.loading());
 
     final Either<Failure, CurrentWeather> response = await Task<CurrentWeather>(

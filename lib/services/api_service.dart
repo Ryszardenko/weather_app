@@ -9,7 +9,7 @@ import 'package:weather_app/services/web_service.dart';
 
 class ApiService {
   static ApiService _instance;
-  static const API_KEY = "apikey=QyYFltaCEbdKPKjjhfSo7Hz6Xei6MAo4";
+  static const API_KEY = "apikey=TetCREAI4oLBknHKIlUDXUKGRAUYb9q8";
 
   ApiService._internal();
 
@@ -32,6 +32,21 @@ class ApiService {
       final List<Location> cities =
           result.map<Location>((city) => Location.fromJson(city)).toList();
       return cities;
+    } on DioError catch (e) {
+      throw _throwException(e);
+    }
+  }
+
+  Future<Location> fetchLocation(
+      double latitude, double longitude) async {
+    final path =
+        "/locations/v1/cities/geoposition/search?$API_KEY&q=$latitude,$longitude&details=false&$_language";
+
+    try {
+      final response = await _dio.get(path);
+      final result = response.data;
+      final location = Location.fromJson(result);
+      return location;
     } on DioError catch (e) {
       throw _throwException(e);
     }

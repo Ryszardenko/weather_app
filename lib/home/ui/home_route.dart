@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/presentation/color.dart';
 import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
+import 'package:weather_app/widgets/current/ui/current_location_widget.dart';
 import 'package:weather_app/widgets/history/ui/history_widget.dart';
 import 'package:weather_app/widgets/location_tile.dart';
 
@@ -23,7 +24,6 @@ class HomeRoute extends StatelessWidget {
         child: FloatingSearchBar(
           backgroundColor: CustomColor.charlestonGreen,
           transition: CircularFloatingSearchBarTransition(),
-          backdropColor: Colors.black,
           physics: const BouncingScrollPhysics(),
           automaticallyImplyBackButton: false,
           hint: Strings().getString(Strings.findCity),
@@ -34,7 +34,7 @@ class HomeRoute extends StatelessWidget {
           debounceDelay: const Duration(milliseconds: 400),
           onQueryChanged: (query) => cubit.searchCities(cityName: query),
           builder: (context, transition) => _buildSearchResult(),
-          body: _buildBody(cubit),
+          body: const CurrentLocationWidget(),
         ),
       ),
     );
@@ -53,22 +53,19 @@ class HomeRoute extends StatelessWidget {
             style: CustomTextStyle.montserratBold18,
           );
         else if (state is Error)
-          return Text(
-            state.message,
-            style: CustomTextStyle.montserratBold18,
-          );
+          return ErrorWidget(state.message);
         else
-          return const SizedBox();
+          return const SearchHistoryWidget();
       },
     );
   }
 
   Container _buildLocationList(BuildContext context, Success state) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.8,
       child: ListView.separated(
         separatorBuilder: (context, index) => Container(
-          height: 1,
+          height: 2,
           color: Colors.black,
         ),
         shrinkWrap: true,
@@ -78,12 +75,6 @@ class HomeRoute extends StatelessWidget {
           return LocationTile(location);
         },
       ),
-    );
-  }
-
-  Widget _buildBody(HomeCubit cubit) {
-    return Center(
-      child: const SearchHistoryWidget(),
     );
   }
 }

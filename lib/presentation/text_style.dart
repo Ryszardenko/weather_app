@@ -30,7 +30,7 @@ class CustomTextStyle {
 
   static const TextStyle montserratMedium18 = TextStyle(
       fontFamily: "Montserrat",
-      fontSize: 14.0,
+      fontSize: 18.0,
       fontWeight: FontWeight.w500,
       color: CustomColor.whiteSmoke);
 
@@ -47,4 +47,16 @@ class CustomTextStyle {
       fontSize: 18.0,
       fontWeight: FontWeight.w700,
       color: CustomColor.whiteSmoke);
+
+  static const TextStyle montserratBold20 = TextStyle(
+      fontFamily: "Montserrat",
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      color: CustomColor.whiteSmoke);
+
+  static const TextStyle montserratBold20red = TextStyle(
+      fontFamily: "Montserrat",
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      color: Colors.red);
 }

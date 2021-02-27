@@ -5,7 +5,7 @@ import 'package:weather_app/models/location/location_model.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/widgets/hour/ui/hourly_forecast_widget.dart';
-import 'package:weather_app/widgets/location_widget.dart';
+import 'package:weather_app/widgets/weather_widget.dart';
 
 class LocationRoute extends StatelessWidget {
   const LocationRoute({Key key}) : super(key: key);
@@ -18,56 +18,43 @@ class LocationRoute extends StatelessWidget {
     cubit.init(location.key);
 
     return Scaffold(
-      appBar: _buildAppBar(context, location),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildLocationBox(),
-            HourlyForecastWidget(location.key),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLocationBox() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: 260
-        ),
-        child: Center(
-          child: BlocBuilder<LocationCubit, LocationState>(
-            builder: (context, state) {
-              if (state is Success)
-                return LocationWidget(state.weather);
-              else if (state is Error)
-                return Text(
-                  state.message,
-                  style: CustomTextStyle.montserratMedium18,
-                );
-              else
-                return const CircularProgressIndicator();
-            },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildLocationName(location),
+              _buildLocationBox(),
+              HourlyForecastWidget(location.key),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget _buildAppBar(BuildContext context, Location location) {
-    return AppBar(
-      title: Text(location.localizedName,
-          style: CustomTextStyle.montserratSemiBold20),
-      leading: _buildBackIcon(context),
-    );
+  Text _buildLocationName(Location location) {
+    return Text(location.localizedName,
+        style: CustomTextStyle.montserratBold20);
   }
 
-  GestureDetector _buildBackIcon(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pop(context),
-      child: Icon(Icons.arrow_back),
+  Widget _buildLocationBox() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: 260),
+        child: Center(
+          child: BlocBuilder<LocationCubit, LocationState>(
+            builder: (context, state) {
+              if (state is Success)
+                return WeatherWidget(state.weather);
+              else if (state is Error)
+                return ErrorWidget(state.message);
+              else
+                return const CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
     );
   }
 }
