@@ -10,7 +10,6 @@ _$_Location _$_$_LocationFromJson(Map<String, dynamic> json) {
   return _$_Location(
     json['Key'] as String,
     json['Type'] as String,
-    json['Rank'] as int,
     json['LocalizedName'] as String,
     json['Country'] == null
         ? null
@@ -25,7 +24,6 @@ Map<String, dynamic> _$_$_LocationToJson(_$_Location instance) =>
     <String, dynamic>{
       'Key': instance.key,
       'Type': instance.type,
-      'Rank': instance.rank,
       'LocalizedName': instance.localizedName,
       'Country': instance.country,
       'AdministrativeArea': instance.administrativeArea,

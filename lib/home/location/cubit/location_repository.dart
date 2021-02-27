@@ -1,4 +1,4 @@
-import 'package:weather_app/models/location/weather/current/current_weather_model.dart';
+import 'package:weather_app/models/weather/current/current_weather_model.dart';
 import 'package:weather_app/services/api_service.dart';
 
 class LocationRepository {

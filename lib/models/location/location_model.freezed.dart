@@ -20,14 +20,12 @@ class _$LocationTearOff {
   _Location call(
       @JsonKey(name: 'Key') String key,
       @JsonKey(name: 'Type') String type,
-      @JsonKey(name: 'Rank') int rank,
       @JsonKey(name: 'LocalizedName') String localizedName,
       @JsonKey(name: 'Country') Area country,
       @JsonKey(name: 'AdministrativeArea') Area administrativeArea) {
     return _Location(
       key,
       type,
-      rank,
       localizedName,
       country,
       administrativeArea,
@@ -50,8 +48,6 @@ mixin _$Location {
   String get key;
   @JsonKey(name: 'Type')
   String get type;
-  @JsonKey(name: 'Rank')
-  int get rank;
   @JsonKey(name: 'LocalizedName')
   String get localizedName;
   @JsonKey(name: 'Country')
@@ -71,7 +67,6 @@ abstract class $LocationCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'Key') String key,
       @JsonKey(name: 'Type') String type,
-      @JsonKey(name: 'Rank') int rank,
       @JsonKey(name: 'LocalizedName') String localizedName,
       @JsonKey(name: 'Country') Area country,
       @JsonKey(name: 'AdministrativeArea') Area administrativeArea});
@@ -92,7 +87,6 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
   $Res call({
     Object key = freezed,
     Object type = freezed,
-    Object rank = freezed,
     Object localizedName = freezed,
     Object country = freezed,
     Object administrativeArea = freezed,
@@ -100,7 +94,6 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
     return _then(_value.copyWith(
       key: key == freezed ? _value.key : key as String,
       type: type == freezed ? _value.type : type as String,
-      rank: rank == freezed ? _value.rank : rank as int,
       localizedName: localizedName == freezed
           ? _value.localizedName
           : localizedName as String,
@@ -140,7 +133,6 @@ abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'Key') String key,
       @JsonKey(name: 'Type') String type,
-      @JsonKey(name: 'Rank') int rank,
       @JsonKey(name: 'LocalizedName') String localizedName,
       @JsonKey(name: 'Country') Area country,
       @JsonKey(name: 'AdministrativeArea') Area administrativeArea});
@@ -164,7 +156,6 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
   $Res call({
     Object key = freezed,
     Object type = freezed,
-    Object rank = freezed,
     Object localizedName = freezed,
     Object country = freezed,
     Object administrativeArea = freezed,
@@ -172,7 +163,6 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
     return _then(_Location(
       key == freezed ? _value.key : key as String,
       type == freezed ? _value.type : type as String,
-      rank == freezed ? _value.rank : rank as int,
       localizedName == freezed ? _value.localizedName : localizedName as String,
       country == freezed ? _value.country : country as Area,
       administrativeArea == freezed
@@ -189,13 +179,11 @@ class _$_Location implements _Location {
   const _$_Location(
       @JsonKey(name: 'Key') this.key,
       @JsonKey(name: 'Type') this.type,
-      @JsonKey(name: 'Rank') this.rank,
       @JsonKey(name: 'LocalizedName') this.localizedName,
       @JsonKey(name: 'Country') this.country,
       @JsonKey(name: 'AdministrativeArea') this.administrativeArea)
       : assert(key != null),
         assert(type != null),
-        assert(rank != null),
         assert(localizedName != null),
         assert(country != null),
         assert(administrativeArea != null);
@@ -210,9 +198,6 @@ class _$_Location implements _Location {
   @JsonKey(name: 'Type')
   final String type;
   @override
-  @JsonKey(name: 'Rank')
-  final int rank;
-  @override
   @JsonKey(name: 'LocalizedName')
   final String localizedName;
   @override
@@ -224,7 +209,7 @@ class _$_Location implements _Location {
 
   @override
   String toString() {
-    return 'Location(key: $key, type: $type, rank: $rank, localizedName: $localizedName, country: $country, administrativeArea: $administrativeArea)';
+    return 'Location(key: $key, type: $type, localizedName: $localizedName, country: $country, administrativeArea: $administrativeArea)';
   }
 
   @override
@@ -235,8 +220,6 @@ class _$_Location implements _Location {
                 const DeepCollectionEquality().equals(other.key, key)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)) &&
             (identical(other.localizedName, localizedName) ||
                 const DeepCollectionEquality()
                     .equals(other.localizedName, localizedName)) &&
@@ -253,7 +236,6 @@ class _$_Location implements _Location {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(key) ^
       const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(rank) ^
       const DeepCollectionEquality().hash(localizedName) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(administrativeArea);
@@ -273,7 +255,6 @@ abstract class _Location implements Location {
   const factory _Location(
           @JsonKey(name: 'Key') String key,
           @JsonKey(name: 'Type') String type,
-          @JsonKey(name: 'Rank') int rank,
           @JsonKey(name: 'LocalizedName') String localizedName,
           @JsonKey(name: 'Country') Area country,
           @JsonKey(name: 'AdministrativeArea') Area administrativeArea) =
@@ -287,9 +268,6 @@ abstract class _Location implements Location {
   @override
   @JsonKey(name: 'Type')
   String get type;
-  @override
-  @JsonKey(name: 'Rank')
-  int get rank;
   @override
   @JsonKey(name: 'LocalizedName')
   String get localizedName;

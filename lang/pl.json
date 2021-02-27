@@ -1,3 +1,19 @@
 {
-  "app_name": "Prosta Aplikacja Pogodowa"
+  "app_name": "Prosta Aplikacja Pogodowa",
+  "find_city": "Wyszukaj miasto",
+  "not_found": "Nie znaleziono",
+  "invalid_city_name": "Nieprawidłowa nazwa",
+  "real_feel": "RealFeel",
+  "pressure": "Ciśnienie",
+  "wind": "Wiatr",
+  "cloud_cover": "Zachmurzenie",
+  "humidity": "Wilgotność",
+  "visibility": "Widoczność",
+  "no_search_history": "Brak historii wyszukiwania",
+  "recently_searched": "Ostatnio wyszukiwane:",
+  "no_internet": "Brak połączenia z internetem",
+  "error_try_again_later": "Wystąpił błąd. Spróbuj ponownie później.",
+  "history_retrieval_error": "Błąd pobierania historii wyszukiwania.",
+  "http_exception": "Błąd połączenia",
+  "format_exception": "Nieprawidłowa odpowiedź z serwera"
 }

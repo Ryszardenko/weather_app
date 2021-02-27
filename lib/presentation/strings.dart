@@ -1,19 +1,25 @@
+import 'package:weather_app/main.dart';
+
 class Strings {
-  static const String appName = "Simple Weather Application";
-  static const String findCity = "Search for a city";
-  static const String notFound = "Not found";
-  static const String invalidCityName = "Invalid City Name";
-  static const String realFeel = "RealFeel";
-  static const String pressure = "Pressure";
-  static const String wind = "Wind";
-  static const String cloudCover = "Cloud Cover";
-  static const String humidity = "Humidity";
-  static const String visibility = "Visibility";
+  static const String appName = "app_name";
+  static const String findCity = "find_city";
+  static const String notFound = "not_found";
+  static const String invalidCityName = "invalid_city_name";
+  static const String realFeel = "real_feel";
+  static const String pressure = "pressure";
+  static const String wind = "wind";
+  static const String cloudCover = "cloud_cover";
+  static const String humidity = "humidity";
+  static const String visibility = "visibility";
+  static const String noSearchHistory = "no_search_history";
+  static const String recentlySearched = "recently_searched";
 
   ///Errors
-  static const String noInternet = "No internet connection";
-  static const String errorTryAgainLater =
-      "An error occured. Please try again later.";
-  static const String httpException = "Connection error";
-  static const String formatException = "Invalid response from the server";
+  static const String noInternet = "no_internet";
+  static const String errorTryAgainLater = "error_try_again_later";
+  static const String historyRetrievalError = "history_retrieval_error";
+  static const String httpException = "http_exception";
+  static const String formatException = "format_exception";
+
+  String getString(String stringKey) => MyApp.localizations.translate(stringKey);
 }

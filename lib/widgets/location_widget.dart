@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/location/weather/current/current_weather_model.dart';
+import 'package:weather_app/models/weather/current/current_weather_model.dart';
+import 'package:weather_app/presentation/assets.dart';
 import 'package:weather_app/presentation/color.dart';
 import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
+import 'package:weather_app/extensions/double_extensions.dart';
 
 class LocationWidget extends StatelessWidget {
   const LocationWidget(
@@ -23,101 +25,103 @@ class LocationWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image(
-                image: AssetImage('assets/icon/${_weather.weatherIcon}.png'),
-                height: 80,
-                fit: BoxFit.fitHeight,
-              ),
-              Column(
-                children: [
-                  Text(
-                    _weather.weatherText,
-                    style: CustomTextStyle.montserratRegular16,
-                  ),
-                  Text(
-                    '${_weather.temperature.metric.value}°C',
-                    style: CustomTextStyle.montserratRegular16.copyWith(
-                        fontSize: 50,
-                        color: _setTemperatureColor(
-                            _weather.temperature.metric.value.toInt())),
-                  ),
-                ],
-              ),
-            ],
+          _buildMainInfo(),
+          _buildInfoRow(
+            Strings.realFeel,
+            "${_weather.realFeelTemperature.metric.value}°C",
+            Strings.pressure,
+            "${_weather.pressure.metric.value} ${_weather.pressure.metric.unit}",
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Row(
-              children: [
-                _buildCategoryText(Strings.realFeel),
-                _buildValueText(
-                    "${_weather.realFeelTemperature.metric.value}°C"),
-                const SizedBox(width: 16),
-                _buildCategoryText(Strings.pressure),
-                _buildValueText(
-                    "${_weather.pressure.metric.value} ${_weather.pressure.metric.unit}"),
-              ],
-            ),
+          _buildInfoRow(
+            Strings.wind,
+            "${_weather.wind.speed.metric.value} ${_weather.wind.speed.metric.unit}",
+            Strings.cloudCover,
+            "${_weather.cloudCover}%",
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Row(
-              children: [
-                _buildCategoryText(Strings.wind),
-                _buildValueText(
-                    "${_weather.wind.speed.metric.value} ${_weather.wind.speed.metric.unit}"),
-                const SizedBox(width: 16),
-                _buildCategoryText(Strings.cloudCover),
-                _buildValueText("${_weather.cloudCover}%"),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Row(
-              children: [
-                _buildCategoryText(Strings.humidity),
-                _buildValueText("${_weather.relativeHumidity}%"),
-                const SizedBox(width: 16),
-                _buildCategoryText(Strings.visibility),
-                _buildValueText(
-                    "${_weather.visibility.metric.value} ${_weather.visibility.metric.unit}"),
-              ],
-            ),
+          _buildInfoRow(
+            Strings.humidity,
+            "${_weather.relativeHumidity}%",
+            Strings.visibility,
+            "${_weather.visibility.metric.value} ${_weather.visibility.metric.unit}",
           ),
         ],
       ),
     );
   }
 
-  Widget _buildCategoryText(String text) {
+  Row _buildMainInfo() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image(
+          image: CustomAssets().getIcon(_weather.weatherIcon),
+          height: 80,
+          fit: BoxFit.fitHeight,
+        ),
+        Column(
+          children: [
+            Text(
+              _weather.weatherText,
+              style: CustomTextStyle.montserratRegular16,
+            ),
+            Text(
+              '${_weather.temperature.metric.value}°C',
+              style: CustomTextStyle.montserratRegular16.copyWith(
+                fontSize: 50,
+                color:
+                    _weather.temperature.metric.value.setColorDependsOnValue(),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Padding _buildInfoRow(
+    String leftRowStringKey,
+    String leftRowValue,
+    String rightRowStringKey,
+    String rightRowValue,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: Row(
+        children: [
+          Expanded(
+              child: Row(
+            children: [
+              _buildCategoryText(leftRowStringKey),
+              _buildValueText(leftRowValue),
+            ],
+          )),
+          const SizedBox(width: 16),
+          Expanded(
+              child: Row(
+            children: [
+              _buildCategoryText(rightRowStringKey),
+              _buildValueText(rightRowValue),
+            ],
+          )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryText(String stringKey) {
     return Expanded(
       child: Text(
-        text,
+        Strings().getString(stringKey),
         style: CustomTextStyle.montserratRegular14,
       ),
     );
   }
 
   Widget _buildValueText(String text) {
-    return Expanded(
-      child: Text(
-        text,
-        style: CustomTextStyle.montserratSemiBold14,
-        textAlign: TextAlign.end,
-      ),
+    return Text(
+      text,
+      style: CustomTextStyle.montserratSemiBold14,
+      textAlign: TextAlign.end,
     );
-  }
-
-  Color _setTemperatureColor(int temperature) {
-    if (temperature < 10)
-      return Colors.blue;
-    else if (temperature < 20)
-      return Colors.black;
-    else
-      return Colors.red;
   }
 }

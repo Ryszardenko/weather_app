@@ -4,6 +4,7 @@ import 'package:weather_app/home/location/cubit/location_state.dart';
 import 'package:weather_app/models/location/location_model.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/widgets/hour/ui/hourly_forecast_widget.dart';
 import 'package:weather_app/widgets/location_widget.dart';
 
 class LocationRoute extends StatelessWidget {
@@ -18,30 +19,38 @@ class LocationRoute extends StatelessWidget {
 
     return Scaffold(
       appBar: _buildAppBar(context, location),
-      body: Column(
-        children: [
-          _buildLocationBox(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildLocationBox(),
+            HourlyForecastWidget(location.key),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildLocationBox() {
     return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Center(
-        child: BlocBuilder<LocationCubit, LocationState>(
-          builder: (context, state) {
-            if (state is Success)
-              return LocationWidget(state.weather);
-            else if (state is Error)
-              return Text(
-                state.message,
-                style: CustomTextStyle.montserratMedium18,
-              );
-            else
-              return const CircularProgressIndicator();
-          },
+      padding: const EdgeInsets.all(16),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: 260
+        ),
+        child: Center(
+          child: BlocBuilder<LocationCubit, LocationState>(
+            builder: (context, state) {
+              if (state is Success)
+                return LocationWidget(state.weather);
+              else if (state is Error)
+                return Text(
+                  state.message,
+                  style: CustomTextStyle.montserratMedium18,
+                );
+              else
+                return const CircularProgressIndicator();
+            },
+          ),
         ),
       ),
     );

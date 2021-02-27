@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:weather_app/home/location/cubit/location_repository.dart';
-import 'package:weather_app/models/location/weather/current/current_weather_model.dart';
+import 'package:weather_app/models/weather/current/current_weather_model.dart';
 import 'package:weather_app/services/api_service.dart';
 import 'location_state.dart';
 import 'package:weather_app/extensions/task_extensions.dart';

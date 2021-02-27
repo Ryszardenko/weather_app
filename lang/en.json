@@ -1,3 +1,19 @@
 {
-  "app_name": "Simple Weather Application"
+  "app_name": "Simple Weather Application",
+  "find_city": "Search for a city",
+  "not_found": "Not found",
+  "invalid_city_name": "Invalid City Name",
+  "real_feel": "RealFeel",
+  "pressure": "Pressure",
+  "wind": "Wind",
+  "cloud_cover": "Cloud Cover",
+  "humidity": "Humidity",
+  "visibility": "Visibility",
+  "no_search_history": "No search history",
+  "recently_searched": "Recently searched:",
+  "no_internet": "No internet connection",
+  "error_try_again_later": "An error occured. Please try again later.",
+  "history_retrieval_error": "An error while retrieving search history.",
+  "http_exception": "Connection error",
+  "format_exception": "Invalid response from the server"
 }

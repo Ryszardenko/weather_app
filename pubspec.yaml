@@ -32,12 +32,16 @@ dependencies:
   material_floating_search_bar: ^0.2.6
   fluttertoast: ^7.1.8
   flutter_launcher_icons: ^0.8.1
-#bloc
+  shared_preferences: ^0.5.12+4
+  #bloc
   bloc: ^6.1.1
   flutter_bloc: ^6.1.1
   json_annotation: ^3.1.1
   json_serializable: ^3.5.1
   freezed_annotation: ^0.12.0
+  #moor
+  moor_flutter: ^3.1.0
+  moor: ^3.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -48,6 +52,7 @@ dev_dependencies:
     sdk: flutter
   build_runner:
   freezed: ^0.12.7
+  moor_generator: ^3.4.0
 
 flutter_icons:
   android: "launcher_icon"

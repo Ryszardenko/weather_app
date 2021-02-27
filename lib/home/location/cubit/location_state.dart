@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weather_app/models/location/weather/current/current_weather_model.dart';
+import 'package:weather_app/models/weather/current/current_weather_model.dart';
 
 part 'location_state.freezed.dart';
 
