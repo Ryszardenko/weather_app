@@ -4,13 +4,8 @@ Simple Weather Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+If you are getting an internet exception, it is possible that the API Key from Accuweather has exceeded the connection limit.
+Go to https://developer.accuweather.com/user/me/apps and generate a new application.
 
-A few resources to get you started if this is your first Flutter project:
+Go to api_service.dart and replace static const API_KEY value with a new one.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

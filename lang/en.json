@@ -21,7 +21,7 @@
   "cant_display_hourly_forecast": "Hourly forecast cannot be displayed",
   "cant_display_your_location_weather": "The weather for your location cannot be displayed",
   "location_services_disabled": "Location services are disabled.",
-  "location_permissions_permanently_denied": "Location permissions are permantly denied, we cannot request permissions.",
+  "location_permissions_permanently_denied": "Location permissions are permantly denied.\nYou can change it in App Permissions in Settings.",
   "location_permissions_are_denied": "Location permissions are denied. Actual value:",
   "getting_your_localization_weather": "Downloading your location weather..."
 }

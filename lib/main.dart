@@ -37,7 +37,11 @@ class MyApp extends StatelessWidget {
     ];
 
     return MultiProvider(
-      providers: _getProviders(database),
+      providers: [
+        Provider(create: (_) => HistoryRepository(database)),
+        Provider(create: (_) => HourlyForecastRepository()),
+        Provider(create: (_) => CurrentLocationRepository()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: Strings.appName,
@@ -73,12 +77,6 @@ class MyApp extends StatelessWidget {
     }
     return supportedLocales.first;
   }
-
-  List<Provider> _getProviders(AppDatabase database) => [
-        Provider(create: (_) => HistoryRepository(database)),
-        Provider(create: (_) => HourlyForecastRepository()),
-        Provider(create: (_) => CurrentLocationRepository()),
-      ];
 
   Widget _homeRouteProvider(AppDatabase database) => BlocProvider(
         create: (context) => HomeCubit(HomeRepository(database)),
