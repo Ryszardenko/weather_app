@@ -12,11 +12,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   final HomeRepository _repository;
 
-  @override
-  Future<void> close() {
-    return super.close();
-  }
-
   Future<void> searchCities({String cityName}) async {
     if (cityName?.isEmpty == true)
       emit(HomeState.initial());
@@ -24,6 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeState.loading());
       if (_isCityNameValid(cityName)) {
         final response = await _fetchCities(cityName);
+
         response.fold(
           (failure) => emit(HomeState.error(failure.message)),
           (locations) {

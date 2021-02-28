@@ -5,9 +5,6 @@ import 'converters.dart';
 
 part 'appdatabase.g.dart';
 
-///run below command after edit
-///flutter pub run build_runner build --delete-conflicting-outputs
-
 @UseMoor(
     tables: [Locations],
     daos: [LocationDao])

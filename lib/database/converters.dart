@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:weather_app/models/location/location_model.dart';
 

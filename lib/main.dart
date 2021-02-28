@@ -25,12 +25,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final database = AppDatabase();
 
+    final supportedLocales = [
+      Locale('en', 'US'),
+      Locale('pl', 'PL'),
+    ];
+
+    final localizationsDelegates = [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ];
+
     return MultiProvider(
-      providers: [
-        Provider(create: (_) => HistoryRepository(database)),
-        Provider(create: (_) => HourlyForecastRepository()),
-        Provider(create: (_) => CurrentLocationRepository()),
-      ],
+      providers: _getProviders(database),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: Strings.appName,
@@ -40,24 +47,10 @@ class MyApp extends StatelessWidget {
           canvasColor: Colors.black,
           iconTheme: IconThemeData(color: CustomColor.whiteSmoke),
         ),
-        supportedLocales: [
-          Locale('en', 'US'),
-          Locale('pl', 'PL'),
-        ],
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          for (final supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale?.languageCode &&
-                supportedLocale.countryCode == locale?.countryCode) {
-              return supportedLocale;
-            }
-          }
-          return supportedLocales.first;
-        },
+        supportedLocales: supportedLocales,
+        localizationsDelegates: localizationsDelegates,
+        localeResolutionCallback: (locale, supportedLocales) =>
+            _localeResolutionCallback(locale, supportedLocales),
         initialRoute: HomeRoute.routeName,
         routes: {
           HomeRoute.routeName: (context) {
@@ -70,6 +63,23 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  Locale _localeResolutionCallback(
+      Locale locale, Iterable<Locale> supportedLocales) {
+    for (final supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale?.languageCode &&
+          supportedLocale.countryCode == locale?.countryCode) {
+        return supportedLocale;
+      }
+    }
+    return supportedLocales.first;
+  }
+
+  List<Provider> _getProviders(AppDatabase database) => [
+        Provider(create: (_) => HistoryRepository(database)),
+        Provider(create: (_) => HourlyForecastRepository()),
+        Provider(create: (_) => CurrentLocationRepository()),
+      ];
+
   Widget _homeRouteProvider(AppDatabase database) => BlocProvider(
         create: (context) => HomeCubit(HomeRepository(database)),
         child: const HomeRoute(),
@@ -81,10 +91,9 @@ class MyApp extends StatelessWidget {
       );
 
   void initGlobalAppLocalizations(BuildContext context) {
-    ///W klasach, któe nie mają dostępu do contextu chciałem mieć dostęp do lokalizacji.
-    ///Mogłbym oczywiście go przekazywać, ale obecny sposób wydaje mi się "lżejszy".
-    ///Wiem, że nie jest to idealne rozwiązanie, ale mam pewnosć, że HomeRoute nie zniknie z WidgetTree.
-
+    /// In classes that don't have access to context, I wanted to have access to the localization.
+    /// I could of course pass context on, but the current way seems "lighter" to me.
+    /// I know this is not a perfect solution, but I am sure HomeRoute will not disappear from WidgetTree.
     if (localizations == null) localizations = AppLocalizations.of(context);
   }
 }

@@ -4,8 +4,6 @@ part 'current_weather_model.freezed.dart';
 
 part 'current_weather_model.g.dart';
 
-///flutter pub run build_runner build --delete-conflicting-outputs
-
 @freezed
 abstract class CurrentWeather with _$CurrentWeather {
   const factory CurrentWeather(

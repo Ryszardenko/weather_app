@@ -4,8 +4,6 @@ part 'location_model.freezed.dart';
 
 part 'location_model.g.dart';
 
-///flutter pub run build_runner build --delete-conflicting-outputs
-
 @freezed
 abstract class Location with _$Location {
   const factory Location(

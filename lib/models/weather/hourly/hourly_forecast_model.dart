@@ -5,8 +5,6 @@ part 'hourly_forecast_model.freezed.dart';
 
 part 'hourly_forecast_model.g.dart';
 
-///flutter pub run build_runner build --delete-conflicting-outputs
-
 @freezed
 abstract class HourlyForecast with _$HourlyForecast {
   const factory HourlyForecast(
