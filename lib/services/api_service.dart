@@ -9,7 +9,7 @@ import 'package:weather_app/services/web_service.dart';
 
 class ApiService {
   static ApiService _instance;
-  static const API_KEY = "apikey=WcBUSGbAOGkq1G0TsYOHdJAaI76GWMpc";
+  static const API_KEY = "apikey=rem2Hg4vzJg6G7ABdlEG4F8X49b6os9G";
 
   ApiService._internal();
 
