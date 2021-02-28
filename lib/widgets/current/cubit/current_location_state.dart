@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weather_app/models/location/location_model.dart';
 import 'package:weather_app/models/weather/current/current_weather_model.dart';
 
 part 'current_location_state.freezed.dart';
@@ -11,7 +12,7 @@ abstract class CurrentLocationState with _$CurrentLocationState {
 
   const factory CurrentLocationState.loading() = Loading;
 
-  const factory CurrentLocationState.success(String locationName, CurrentWeather weather) = Success;
+  const factory CurrentLocationState.success(Location location, CurrentWeather weather) = Success;
 
   const factory CurrentLocationState.error(String message) = Error;
 }

@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/models/weather/hourly/hourly_forecast_model.dart';
 import 'package:weather_app/presentation/assets.dart';
-import 'package:weather_app/presentation/color.dart';
+import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:weather_app/extensions/double_extensions.dart';
 import 'package:weather_app/extensions/string_extensions.dart';
 import 'package:weather_app/widgets/hour/cubit/hourly_forecast_cubit.dart';
 import 'package:weather_app/widgets/hour/cubit/hourly_forecast_repository.dart';
 import 'package:weather_app/widgets/hour/cubit/hourly_forecast_state.dart';
+import '../../error_text_widget.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
   const HourlyForecastWidget(this._locationKey);
@@ -34,7 +35,8 @@ class HourlyForecastWidget extends StatelessWidget {
               else if (state is Success)
                 return _buildForecasts(state.forecasts);
               else if (state is Error)
-                return ErrorWidget(state.message);
+                return ErrorTextWidget(
+                    '${Strings().cantDisplayHourlyForecast}\n${state.message}');
               else
                 return const SizedBox();
             },
@@ -56,8 +58,9 @@ class HourlyForecastWidget extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                  color: CustomColor.charlestonGreen,
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
+                border: Border.all(color: Colors.white, width: 1.5),
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

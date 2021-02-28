@@ -34,7 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
           },
         );
       } else {
-        emit(HomeState.error(Strings().getString(Strings.invalidCityName)));
+        emit(HomeState.error(Strings().invalidCityName));
       }
     }
   }

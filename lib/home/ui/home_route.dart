@@ -4,12 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/home/cubit/home_cubit.dart';
 import 'package:weather_app/home/cubit/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/presentation/color.dart';
 import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:weather_app/widgets/current/ui/current_location_widget.dart';
+import 'package:weather_app/widgets/error_text_widget.dart';
+import 'package:weather_app/widgets/footer_widget.dart';
 import 'package:weather_app/widgets/history/ui/history_widget.dart';
-import 'package:weather_app/widgets/location_tile.dart';
+import 'package:weather_app/widgets/search_tile.dart';
 
 class HomeRoute extends StatelessWidget {
   const HomeRoute({Key key}) : super(key: key);
@@ -20,20 +21,25 @@ class HomeRoute extends StatelessWidget {
     final HomeCubit cubit = context.watch();
 
     return Scaffold(
+      bottomSheet: FooterWidget(),
       body: SafeArea(
         child: FloatingSearchBar(
-          backgroundColor: CustomColor.charlestonGreen,
+          backgroundColor: Colors.black,
+          borderRadius: BorderRadius.circular(32.0),
+          border: BorderSide(color: Colors.white, width: 1.5),
           transition: CircularFloatingSearchBarTransition(),
           physics: const BouncingScrollPhysics(),
           automaticallyImplyBackButton: false,
-          hint: Strings().getString(Strings.findCity),
-          hintStyle: CustomTextStyle.montserratMedium12,
+          backdropColor: Colors.black,
+          hint: Strings().findCity,
+          hintStyle: CustomTextStyle.montserratMedium14,
           queryStyle: CustomTextStyle.montserratMedium14,
           transitionDuration: const Duration(milliseconds: 800),
           transitionCurve: Curves.easeInOut,
-          debounceDelay: const Duration(milliseconds: 400),
+          debounceDelay: const Duration(milliseconds: 600),
           onQueryChanged: (query) => cubit.searchCities(cityName: query),
           builder: (context, transition) => _buildSearchResult(),
+          margins: const EdgeInsets.all(16),
           body: const CurrentLocationWidget(),
         ),
       ),
@@ -46,21 +52,21 @@ class HomeRoute extends StatelessWidget {
         if (state is Loading)
           return const CircularProgressIndicator();
         else if (state is Success)
-          return _buildLocationList(context, state);
+          return _buildSearchList(context, state);
         else if (state is NotFound)
           return Text(
-            '${Strings().getString(Strings.notFound)} ${state.query}',
+            '${Strings().notFound} ${state.query}',
             style: CustomTextStyle.montserratBold18,
           );
         else if (state is Error)
-          return ErrorWidget(state.message);
+          return ErrorTextWidget(state.message);
         else
-          return const SearchHistoryWidget();
+          return const HistoryWidget();
       },
     );
   }
 
-  Container _buildLocationList(BuildContext context, Success state) {
+  Container _buildSearchList(BuildContext context, Success state) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
       child: ListView.separated(
@@ -72,7 +78,7 @@ class HomeRoute extends StatelessWidget {
         itemCount: state.locations.length,
         itemBuilder: (context, index) {
           final location = state.locations[index];
-          return LocationTile(location);
+          return SearchTile(location);
         },
       ),
     );

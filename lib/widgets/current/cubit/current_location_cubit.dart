@@ -32,13 +32,12 @@ class CurrentLocationCubit extends Cubit<CurrentLocationState> {
 
     response.fold(
       (failure) => emit(CurrentLocationState.error(failure.message)),
-      (location) =>
-          fetchCurrentLocationWeather(location.key, location.localizedName),
+      (location) => fetchCurrentLocationWeather(location.key, location),
     );
   }
 
   Future<void> fetchCurrentLocationWeather(
-      String locationKey, String locationName) async {
+      String locationKey, Location location) async {
     final Either<Failure, CurrentWeather> response = await Task<CurrentWeather>(
             () => _repository.fetchCurrentWeather(locationKey))
         .attempt()
@@ -47,7 +46,7 @@ class CurrentLocationCubit extends Cubit<CurrentLocationState> {
 
     response.fold(
       (failure) => emit(CurrentLocationState.error(failure.message)),
-      (weather) => emit(CurrentLocationState.success(locationName, weather)),
+      (weather) => emit(CurrentLocationState.success(location, weather)),
     );
   }
 
@@ -57,14 +56,13 @@ class CurrentLocationCubit extends Cubit<CurrentLocationState> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled)
-      emit(CurrentLocationState.error(
-          Strings().getString(Strings.locationServicesDisabled)));
+      emit(CurrentLocationState.error(Strings().locationServicesDisabled));
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.deniedForever)
       emit(
         CurrentLocationState.error(
-            Strings().getString(Strings.locationPermissionsPermanentlyDenied)),
+            Strings().locationPermissionsPermanentlyDenied),
       );
 
     if (permission == LocationPermission.denied) {
@@ -72,9 +70,8 @@ class CurrentLocationCubit extends Cubit<CurrentLocationState> {
       if (permission != LocationPermission.whileInUse &&
           permission != LocationPermission.always)
         emit(CurrentLocationState.error(
-            '${Strings().getString(Strings.locationPermissionsPermanentlyDenied)} $permission'));
+            '${Strings().locationPermissionsPermanentlyDenied} $permission'));
     }
-
     return await Geolocator.getCurrentPosition();
   }
 }

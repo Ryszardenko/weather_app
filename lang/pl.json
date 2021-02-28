@@ -2,6 +2,8 @@
   "app_name": "Prosta Aplikacja Pogodowa",
   "find_city": "Wyszukaj miasto",
   "not_found": "Nie znaleziono",
+  "retry": "Spróbuj ponownie",
+  "clear": "Wyczyść",
   "invalid_city_name": "Nieprawidłowa nazwa",
   "real_feel": "RealFeel",
   "pressure": "Ciśnienie",
@@ -16,9 +18,10 @@
   "history_retrieval_error": "Błąd pobierania historii wyszukiwania.",
   "http_exception": "Błąd połączenia",
   "format_exception": "Nieprawidłowa odpowiedź z serwera",
+  "cant_display_hourly_forecast": "Nie udało się wyświetlić prognozy godzinowej",
+  "cant_display_your_location_weather": "Nie udało się wyświetlić pogody dla Twojej lokalizacji",
   "location_services_disabled": "Usługi lokalizacyjne są wyłaczone.",
   "location_permissions_permanently_denied": "Trwały brak pozwolenia na dostep do lokalizacji, nie możemy prosić o uprawnienia.",
   "location_permissions_are_denied": "Odmowa dostępu do lokalizacji. Obecnie:",
-  "getting_your_localization_weather": "Trwa pobieranie pogody dla Twojej lokalizacji...",
-  "you_are_in": "Jesteś w"
+  "getting_your_localization_weather": "Trwa pobieranie pogody dla Twojej lokalizacji..."
 }

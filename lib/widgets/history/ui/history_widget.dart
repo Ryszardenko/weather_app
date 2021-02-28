@@ -4,34 +4,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
+import 'package:weather_app/widgets/error_text_widget.dart';
 import 'package:weather_app/widgets/history/cubit/history_cubit.dart';
 import 'package:weather_app/widgets/history/cubit/history_state.dart';
 import 'package:weather_app/widgets/history/cubit/history_repository.dart';
-import 'package:weather_app/widgets/location_tile.dart';
+import 'package:weather_app/widgets/search_tile.dart';
 
-class SearchHistoryWidget extends StatelessWidget {
-  const SearchHistoryWidget({Key key}) : super(key: key);
+class HistoryWidget extends StatelessWidget {
+  const HistoryWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final SearchHistoryRepository repository = Provider.of(context);
+    final HistoryRepository repository = Provider.of(context);
 
     return BlocProvider(
-      create: (_) => SearchHistoryCubit(repository),
+      create: (_) => HistoryCubit(repository),
       child: Center(
-        child: BlocBuilder<SearchHistoryCubit, SearchHistoryState>(
-          builder: (context, state) {
-            context.read<SearchHistoryCubit>().init();
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          child: BlocBuilder<HistoryCubit, HistoryState>(
+            builder: (context, state) {
+              context.read<HistoryCubit>().init();
 
-            if (state is Success)
-              return _buildHistoryList(context, state);
-            else if (state is Error)
-              return ErrorWidget(state.message);
-            else if (state is Empty)
-              return _buildText(Strings.noSearchHistory);
-            else
-              return const CircularProgressIndicator();
-          },
+              if (state is Success)
+                return _buildHistoryList(context, state);
+              else if (state is Error)
+                return ErrorTextWidget(state.message);
+              else if (state is Empty)
+                return _buildTitle(Strings().noSearchHistory);
+              else
+                return const CircularProgressIndicator();
+            },
+          ),
         ),
       ),
     );
@@ -41,17 +45,26 @@ class SearchHistoryWidget extends StatelessWidget {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildText(Strings.recentlySearched),
+          Row(
+            children: [
+              _buildTitle(Strings().recentlySearched),
+              const Spacer(),
+              InkWell(
+                  onTap: () => context.read<HistoryCubit>().clearHistory(),
+                  child: Icon(Icons.highlight_remove_outlined, size: 32.0)),
+            ],
+          ),
           ListView.separated(
             separatorBuilder: (context, index) => Container(
-              height:2,
+              height: 2,
               color: Colors.black,
             ),
             shrinkWrap: true,
             itemCount: state.locations.length,
             itemBuilder: (context, index) {
-             return LocationTile(state.locations[index]);
+              return SearchTile(state.locations[index]);
             },
           )
         ],
@@ -59,9 +72,9 @@ class SearchHistoryWidget extends StatelessWidget {
     );
   }
 
-  Text _buildText(String stringKey) {
+  Widget _buildTitle(String text) {
     return Text(
-      Strings().getString(stringKey),
+      text,
       style: CustomTextStyle.montserratBold18,
     );
   }

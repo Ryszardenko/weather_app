@@ -2,6 +2,8 @@
   "app_name": "Simple Weather Application",
   "find_city": "Search for a city",
   "not_found": "Not found",
+  "retry": "Retry",
+  "clear": "Clear",
   "invalid_city_name": "Invalid City Name",
   "real_feel": "RealFeel",
   "pressure": "Pressure",
@@ -16,9 +18,10 @@
   "history_retrieval_error": "An error while retrieving search history.",
   "http_exception": "Connection error",
   "format_exception": "Invalid response from the server",
+  "cant_display_hourly_forecast": "Hourly forecast cannot be displayed",
+  "cant_display_your_location_weather": "The weather for your location cannot be displayed",
   "location_services_disabled": "Location services are disabled.",
   "location_permissions_permanently_denied": "Location permissions are permantly denied, we cannot request permissions.",
   "location_permissions_are_denied": "Location permissions are denied. Actual value:",
-  "getting_your_localization_weather": "Downloading your location weather...",
-  "you_are_in": "You are in"
+  "getting_your_localization_weather": "Downloading your location weather..."
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather/current/current_weather_model.dart';
 import 'package:weather_app/presentation/assets.dart';
-import 'package:weather_app/presentation/color.dart';
 import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/presentation/text_style.dart';
 import 'package:weather_app/extensions/double_extensions.dart';
@@ -19,7 +18,7 @@ class WeatherWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: CustomColor.charlestonGreen,
+        border: Border.all(color: Colors.white, width: 1.5),
         borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
       child: Column(
@@ -28,21 +27,21 @@ class WeatherWidget extends StatelessWidget {
           _buildWeatherText(),
           _buildMainInfo(),
           _buildInfoRow(
-            Strings.realFeel,
+            Strings().realFeel,
             "${_weather.realFeelTemperature.metric.value}°C",
-            Strings.pressure,
+            Strings().pressure,
             "${_weather.pressure.metric.value} ${_weather.pressure.metric.unit}",
           ),
           _buildInfoRow(
-            Strings.wind,
+            Strings().wind,
             "${_weather.wind.speed.metric.value} ${_weather.wind.speed.metric.unit}",
-            Strings.cloudCover,
+            Strings().cloudCover,
             "${_weather.cloudCover}%",
           ),
           _buildInfoRow(
-            Strings.humidity,
+            Strings().humidity,
             "${_weather.relativeHumidity}%",
-            Strings.visibility,
+            Strings().visibility,
             "${_weather.visibility.metric.value} ${_weather.visibility.metric.unit}",
           ),
         ],
@@ -81,9 +80,9 @@ class WeatherWidget extends StatelessWidget {
   }
 
   Padding _buildInfoRow(
-    String leftRowStringKey,
+    String leftRowCategory,
     String leftRowValue,
-    String rightRowStringKey,
+    String rightRowCategory,
     String rightRowValue,
   ) {
     return Padding(
@@ -93,7 +92,7 @@ class WeatherWidget extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              _buildCategoryText(leftRowStringKey),
+              _buildCategoryText(leftRowCategory),
               _buildValueText(leftRowValue),
             ],
           )),
@@ -101,7 +100,7 @@ class WeatherWidget extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              _buildCategoryText(rightRowStringKey),
+              _buildCategoryText(rightRowCategory),
               _buildValueText(rightRowValue),
             ],
           )),
@@ -110,10 +109,10 @@ class WeatherWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryText(String stringKey) {
+  Widget _buildCategoryText(String category) {
     return Expanded(
       child: Text(
-        Strings().getString(stringKey),
+        category,
         style: CustomTextStyle.montserratRegular14,
       ),
     );

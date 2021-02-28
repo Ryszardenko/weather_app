@@ -10,8 +10,8 @@ part of 'history_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$SearchHistoryStateTearOff {
-  const _$SearchHistoryStateTearOff();
+class _$HistoryStateTearOff {
+  const _$HistoryStateTearOff();
 
 // ignore: unused_element
   Initial initial() {
@@ -45,10 +45,10 @@ class _$SearchHistoryStateTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $SearchHistoryState = _$SearchHistoryStateTearOff();
+const $HistoryState = _$HistoryStateTearOff();
 
 /// @nodoc
-mixin _$SearchHistoryState {
+mixin _$HistoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
@@ -86,20 +86,19 @@ mixin _$SearchHistoryState {
 }
 
 /// @nodoc
-abstract class $SearchHistoryStateCopyWith<$Res> {
-  factory $SearchHistoryStateCopyWith(
-          SearchHistoryState value, $Res Function(SearchHistoryState) then) =
-      _$SearchHistoryStateCopyWithImpl<$Res>;
+abstract class $HistoryStateCopyWith<$Res> {
+  factory $HistoryStateCopyWith(
+          HistoryState value, $Res Function(HistoryState) then) =
+      _$HistoryStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SearchHistoryStateCopyWithImpl<$Res>
-    implements $SearchHistoryStateCopyWith<$Res> {
-  _$SearchHistoryStateCopyWithImpl(this._value, this._then);
+class _$HistoryStateCopyWithImpl<$Res> implements $HistoryStateCopyWith<$Res> {
+  _$HistoryStateCopyWithImpl(this._value, this._then);
 
-  final SearchHistoryState _value;
+  final HistoryState _value;
   // ignore: unused_field
-  final $Res Function(SearchHistoryState) _then;
+  final $Res Function(HistoryState) _then;
 }
 
 /// @nodoc
@@ -109,7 +108,7 @@ abstract class $InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$SearchHistoryStateCopyWithImpl<$Res>
+class _$InitialCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res>
     implements $InitialCopyWith<$Res> {
   _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
       : super(_value, (v) => _then(v as Initial));
@@ -124,7 +123,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'SearchHistoryState.initial()';
+    return 'HistoryState.initial()';
   }
 
   @override
@@ -204,7 +203,7 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements SearchHistoryState {
+abstract class Initial implements HistoryState {
   const factory Initial() = _$Initial;
 }
 
@@ -215,7 +214,7 @@ abstract class $LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$SearchHistoryStateCopyWithImpl<$Res>
+class _$LoadingCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -230,7 +229,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'SearchHistoryState.loading()';
+    return 'HistoryState.loading()';
   }
 
   @override
@@ -310,7 +309,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements SearchHistoryState {
+abstract class Loading implements HistoryState {
   const factory Loading() = _$Loading;
 }
 
@@ -322,7 +321,7 @@ abstract class $SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$SearchHistoryStateCopyWithImpl<$Res>
+class _$SuccessCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res>
     implements $SuccessCopyWith<$Res> {
   _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
       : super(_value, (v) => _then(v as Success));
@@ -349,7 +348,7 @@ class _$Success implements Success {
 
   @override
   String toString() {
-    return 'SearchHistoryState.success(locations: $locations)';
+    return 'HistoryState.success(locations: $locations)';
   }
 
   @override
@@ -439,7 +438,7 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements SearchHistoryState {
+abstract class Success implements HistoryState {
   const factory Success(List<Location> locations) = _$Success;
 
   List<Location> get locations;
@@ -454,7 +453,7 @@ abstract class $EmptyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EmptyCopyWithImpl<$Res> extends _$SearchHistoryStateCopyWithImpl<$Res>
+class _$EmptyCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res>
     implements $EmptyCopyWith<$Res> {
   _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
       : super(_value, (v) => _then(v as Empty));
@@ -469,7 +468,7 @@ class _$Empty implements Empty {
 
   @override
   String toString() {
-    return 'SearchHistoryState.empty()';
+    return 'HistoryState.empty()';
   }
 
   @override
@@ -549,7 +548,7 @@ class _$Empty implements Empty {
   }
 }
 
-abstract class Empty implements SearchHistoryState {
+abstract class Empty implements HistoryState {
   const factory Empty() = _$Empty;
 }
 
@@ -561,7 +560,7 @@ abstract class $ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$SearchHistoryStateCopyWithImpl<$Res>
+class _$ErrorCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -588,7 +587,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'SearchHistoryState.error(message: $message)';
+    return 'HistoryState.error(message: $message)';
   }
 
   @override
@@ -677,7 +676,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements SearchHistoryState {
+abstract class Error implements HistoryState {
   const factory Error(String message) = _$Error;
 
   String get message;

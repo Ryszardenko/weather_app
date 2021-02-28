@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:weather_app/models/location/location_model.dart';
+import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/widgets/history/cubit/history_repository.dart';
 import 'history_state.dart';
 
-class SearchHistoryCubit extends Cubit<SearchHistoryState> {
-  SearchHistoryCubit(this._repository) : super(SearchHistoryState.initial());
+class HistoryCubit extends Cubit<HistoryState> {
+  HistoryCubit(this._repository) : super(HistoryState.initial());
 
-  final SearchHistoryRepository _repository;
+  final HistoryRepository _repository;
 
   StreamSubscription _subscription;
 
@@ -26,21 +26,20 @@ class SearchHistoryCubit extends Cubit<SearchHistoryState> {
   void watchSearchedHistory() {
     _subscription =
         _repository.watchRecentlySearchedLocations().listen((event) {
-      emit(SearchHistoryState.loading());
-      print('event ${event.length}');
+      emit(HistoryState.loading());
 
       if (event?.isEmpty == true)
-        emit(SearchHistoryState.empty());
+        emit(HistoryState.empty());
       else if (event?.isNotEmpty == true) {
         String encoded = jsonEncode(event);
         List<dynamic> decoded = jsonDecode(encoded);
         final locations =
             List<Location>.from(decoded.map((e) => Location.fromJson(e)));
-        emit(SearchHistoryState.success(locations));
+        emit(HistoryState.success(locations));
       } else
-        emit(SearchHistoryState.error('error'));
-
-      print(state);
+        emit(HistoryState.error(Strings().errorTryAgainLater));
     });
   }
+
+  Future<void> clearHistory() => _repository.clearHistory();
 }

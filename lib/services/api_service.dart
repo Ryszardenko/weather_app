@@ -9,7 +9,7 @@ import 'package:weather_app/services/web_service.dart';
 
 class ApiService {
   static ApiService _instance;
-  static const API_KEY = "apikey=TetCREAI4oLBknHKIlUDXUKGRAUYb9q8";
+  static const API_KEY = "apikey=WcBUSGbAOGkq1G0TsYOHdJAaI76GWMpc";
 
   ApiService._internal();
 
@@ -86,14 +86,14 @@ class ApiService {
 
   _throwException(DioError e) {
     if (e.type == DioErrorType.RESPONSE)
-      throw Failure(Strings().getString(Strings.httpException));
+      throw Failure(Strings().httpException);
     else if (e.type == DioErrorType.DEFAULT) {
       if (e.error is SocketException)
-        throw Failure(Strings().getString(Strings.noInternet));
+        throw Failure(Strings().noInternet);
       else if (e.error is FormatException)
-        throw Failure(Strings().getString(Strings.formatException));
+        throw Failure(Strings().formatException);
     } else
-      throw Failure(Strings().getString(Strings.errorTryAgainLater));
+      throw Failure(Strings().errorTryAgainLater);
   }
 }
 

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'location_state.dart';
+part of 'details_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -10,8 +10,8 @@ part of 'location_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$LocationStateTearOff {
-  const _$LocationStateTearOff();
+class _$DetailsStateTearOff {
+  const _$DetailsStateTearOff();
 
 // ignore: unused_element
   Initial initial() {
@@ -40,10 +40,10 @@ class _$LocationStateTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $LocationState = _$LocationStateTearOff();
+const $DetailsState = _$DetailsStateTearOff();
 
 /// @nodoc
-mixin _$LocationState {
+mixin _$DetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
@@ -77,20 +77,19 @@ mixin _$LocationState {
 }
 
 /// @nodoc
-abstract class $LocationStateCopyWith<$Res> {
-  factory $LocationStateCopyWith(
-          LocationState value, $Res Function(LocationState) then) =
-      _$LocationStateCopyWithImpl<$Res>;
+abstract class $DetailsStateCopyWith<$Res> {
+  factory $DetailsStateCopyWith(
+          DetailsState value, $Res Function(DetailsState) then) =
+      _$DetailsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LocationStateCopyWithImpl<$Res>
-    implements $LocationStateCopyWith<$Res> {
-  _$LocationStateCopyWithImpl(this._value, this._then);
+class _$DetailsStateCopyWithImpl<$Res> implements $DetailsStateCopyWith<$Res> {
+  _$DetailsStateCopyWithImpl(this._value, this._then);
 
-  final LocationState _value;
+  final DetailsState _value;
   // ignore: unused_field
-  final $Res Function(LocationState) _then;
+  final $Res Function(DetailsState) _then;
 }
 
 /// @nodoc
@@ -100,7 +99,7 @@ abstract class $InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
+class _$InitialCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
     implements $InitialCopyWith<$Res> {
   _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
       : super(_value, (v) => _then(v as Initial));
@@ -115,7 +114,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'LocationState.initial()';
+    return 'DetailsState.initial()';
   }
 
   @override
@@ -189,7 +188,7 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements LocationState {
+abstract class Initial implements DetailsState {
   const factory Initial() = _$Initial;
 }
 
@@ -200,7 +199,7 @@ abstract class $LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
+class _$LoadingCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
     implements $LoadingCopyWith<$Res> {
   _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
       : super(_value, (v) => _then(v as Loading));
@@ -215,7 +214,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'LocationState.loading()';
+    return 'DetailsState.loading()';
   }
 
   @override
@@ -289,7 +288,7 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements LocationState {
+abstract class Loading implements DetailsState {
   const factory Loading() = _$Loading;
 }
 
@@ -303,7 +302,7 @@ abstract class $SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
+class _$SuccessCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
     implements $SuccessCopyWith<$Res> {
   _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
       : super(_value, (v) => _then(v as Success));
@@ -340,7 +339,7 @@ class _$Success implements Success {
 
   @override
   String toString() {
-    return 'LocationState.success(weather: $weather)';
+    return 'DetailsState.success(weather: $weather)';
   }
 
   @override
@@ -423,7 +422,7 @@ class _$Success implements Success {
   }
 }
 
-abstract class Success implements LocationState {
+abstract class Success implements DetailsState {
   const factory Success(CurrentWeather weather) = _$Success;
 
   CurrentWeather get weather;
@@ -439,7 +438,7 @@ abstract class $ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
+class _$ErrorCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
     implements $ErrorCopyWith<$Res> {
   _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
       : super(_value, (v) => _then(v as Error));
@@ -466,7 +465,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'LocationState.error(message: $message)';
+    return 'DetailsState.error(message: $message)';
   }
 
   @override
@@ -549,7 +548,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements LocationState {
+abstract class Error implements DetailsState {
   const factory Error(String message) = _$Error;
 
   String get message;

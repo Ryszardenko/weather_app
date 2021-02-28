@@ -24,9 +24,9 @@ class _$CurrentLocationStateTearOff {
   }
 
 // ignore: unused_element
-  Success success(String locationName, CurrentWeather weather) {
+  Success success(Location location, CurrentWeather weather) {
     return Success(
-      locationName,
+      location,
       weather,
     );
   }
@@ -49,14 +49,14 @@ mixin _$CurrentLocationState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult success(String locationName, CurrentWeather weather),
+    @required TResult success(Location location, CurrentWeather weather),
     @required TResult error(String message),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult success(String locationName, CurrentWeather weather),
+    TResult success(Location location, CurrentWeather weather),
     TResult error(String message),
     @required TResult orElse(),
   });
@@ -133,7 +133,7 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult success(String locationName, CurrentWeather weather),
+    @required TResult success(Location location, CurrentWeather weather),
     @required TResult error(String message),
   }) {
     assert(initial != null);
@@ -148,7 +148,7 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult success(String locationName, CurrentWeather weather),
+    TResult success(Location location, CurrentWeather weather),
     TResult error(String message),
     @required TResult orElse(),
   }) {
@@ -234,7 +234,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult success(String locationName, CurrentWeather weather),
+    @required TResult success(Location location, CurrentWeather weather),
     @required TResult error(String message),
   }) {
     assert(initial != null);
@@ -249,7 +249,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult success(String locationName, CurrentWeather weather),
+    TResult success(Location location, CurrentWeather weather),
     TResult error(String message),
     @required TResult orElse(),
   }) {
@@ -300,7 +300,7 @@ abstract class Loading implements CurrentLocationState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({String locationName, CurrentWeather weather});
+  $Res call({Location location, CurrentWeather weather});
 
   $CurrentWeatherCopyWith<$Res> get weather;
 }
@@ -317,11 +317,11 @@ class _$SuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object locationName = freezed,
+    Object location = freezed,
     Object weather = freezed,
   }) {
     return _then(Success(
-      locationName == freezed ? _value.locationName : locationName as String,
+      location == freezed ? _value.location : location as Location,
       weather == freezed ? _value.weather : weather as CurrentWeather,
     ));
   }
@@ -339,27 +339,27 @@ class _$SuccessCopyWithImpl<$Res>
 
 /// @nodoc
 class _$Success implements Success {
-  const _$Success(this.locationName, this.weather)
-      : assert(locationName != null),
+  const _$Success(this.location, this.weather)
+      : assert(location != null),
         assert(weather != null);
 
   @override
-  final String locationName;
+  final Location location;
   @override
   final CurrentWeather weather;
 
   @override
   String toString() {
-    return 'CurrentLocationState.success(locationName: $locationName, weather: $weather)';
+    return 'CurrentLocationState.success(location: $location, weather: $weather)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Success &&
-            (identical(other.locationName, locationName) ||
+            (identical(other.location, location) ||
                 const DeepCollectionEquality()
-                    .equals(other.locationName, locationName)) &&
+                    .equals(other.location, location)) &&
             (identical(other.weather, weather) ||
                 const DeepCollectionEquality().equals(other.weather, weather)));
   }
@@ -367,7 +367,7 @@ class _$Success implements Success {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(locationName) ^
+      const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(weather);
 
   @JsonKey(ignore: true)
@@ -380,14 +380,14 @@ class _$Success implements Success {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult success(String locationName, CurrentWeather weather),
+    @required TResult success(Location location, CurrentWeather weather),
     @required TResult error(String message),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
-    return success(locationName, weather);
+    return success(location, weather);
   }
 
   @override
@@ -395,13 +395,13 @@ class _$Success implements Success {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult success(String locationName, CurrentWeather weather),
+    TResult success(Location location, CurrentWeather weather),
     TResult error(String message),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (success != null) {
-      return success(locationName, weather);
+      return success(location, weather);
     }
     return orElse();
   }
@@ -439,10 +439,9 @@ class _$Success implements Success {
 }
 
 abstract class Success implements CurrentLocationState {
-  const factory Success(String locationName, CurrentWeather weather) =
-      _$Success;
+  const factory Success(Location location, CurrentWeather weather) = _$Success;
 
-  String get locationName;
+  Location get location;
   CurrentWeather get weather;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith;
@@ -508,7 +507,7 @@ class _$Error implements Error {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult success(String locationName, CurrentWeather weather),
+    @required TResult success(Location location, CurrentWeather weather),
     @required TResult error(String message),
   }) {
     assert(initial != null);
@@ -523,7 +522,7 @@ class _$Error implements Error {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult success(String locationName, CurrentWeather weather),
+    TResult success(Location location, CurrentWeather weather),
     TResult error(String message),
     @required TResult orElse(),
   }) {

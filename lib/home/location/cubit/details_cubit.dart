@@ -1,22 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:weather_app/home/location/cubit/location_repository.dart';
+import 'package:weather_app/home/location/cubit/details_repository.dart';
 import 'package:weather_app/models/weather/current/current_weather_model.dart';
 import 'package:weather_app/services/api_service.dart';
-import 'location_state.dart';
+import 'details_state.dart';
 import 'package:weather_app/extensions/task_extensions.dart';
 
-class LocationCubit extends Cubit<LocationState> {
-  LocationCubit(this._repository) : super(LocationState.initial());
+class DetailsCubit extends Cubit<DetailsState> {
+  DetailsCubit(this._repository) : super(DetailsState.initial());
 
-  final LocationRepository _repository;
+  final DetailsRepository _repository;
 
   void init(String locationKey) {
     if (state is Initial) _fetchCurrentWeather(locationKey);
   }
 
   Future<void> _fetchCurrentWeather(String locationKey) async {
-    emit(LocationState.loading());
+    emit(DetailsState.loading());
 
     final Either<Failure, CurrentWeather> response = await Task<CurrentWeather>(
             () => _repository.fetchCurrentWeather(locationKey))
@@ -25,8 +25,8 @@ class LocationCubit extends Cubit<LocationState> {
         .run();
 
     response.fold(
-      (failure) => emit(LocationState.error(failure.message)),
-      (weather) => emit(LocationState.success(weather)),
+      (failure) => emit(DetailsState.error(failure.message)),
+      (weather) => emit(DetailsState.success(weather)),
     );
   }
 }

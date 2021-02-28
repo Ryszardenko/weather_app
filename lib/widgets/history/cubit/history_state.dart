@@ -6,14 +6,14 @@ part 'history_state.freezed.dart';
 ///flutter pub run build_runner build --delete-conflicting-outputs
 
 @freezed
-abstract class SearchHistoryState with _$SearchHistoryState {
-  const factory SearchHistoryState.initial() = Initial;
+abstract class HistoryState with _$HistoryState {
+  const factory HistoryState.initial() = Initial;
 
-  const factory SearchHistoryState.loading() = Loading;
+  const factory HistoryState.loading() = Loading;
 
-  const factory SearchHistoryState.success(List<Location> locations) = Success;
+  const factory HistoryState.success(List<Location> locations) = Success;
 
-  const factory SearchHistoryState.empty() = Empty;
+  const factory HistoryState.empty() = Empty;
 
-  const factory SearchHistoryState.error(String message) = Error;
+  const factory HistoryState.error(String message) = Error;
 }

@@ -24,6 +24,8 @@ class LocationDao extends DatabaseAccessor<AppDatabase>
           ..limit(5))
         .watch();
   }
+
+  Future<void> dropTable() => delete(locations).go();
 }
 
 @DataClassName('LocationEntity')

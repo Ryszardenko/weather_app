@@ -5,12 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/database/appdatabase.dart';
 import 'package:weather_app/home/cubit/home_cubit.dart';
 import 'package:weather_app/home/cubit/home_repository.dart';
-import 'package:weather_app/home/location/cubit/location_cubit.dart';
-import 'package:weather_app/home/location/cubit/location_repository.dart';
-import 'package:weather_app/home/location/ui/location_route.dart';
+import 'package:weather_app/home/location/cubit/details_cubit.dart';
+import 'package:weather_app/home/location/cubit/details_repository.dart';
+import 'package:weather_app/home/location/ui/details_route.dart';
 import 'package:weather_app/home/ui/home_route.dart';
 import 'package:weather_app/presentation/app_localizations.dart';
 import 'package:weather_app/presentation/color.dart';
+import 'package:weather_app/presentation/strings.dart';
 import 'package:weather_app/widgets/current/cubit/current_location_repository.dart';
 import 'package:weather_app/widgets/history/cubit/history_repository.dart';
 import 'package:weather_app/widgets/hour/cubit/hourly_forecast_repository.dart';
@@ -26,15 +27,14 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        Provider(create: (_) => SearchHistoryRepository(database)),
+        Provider(create: (_) => HistoryRepository(database)),
         Provider(create: (_) => HourlyForecastRepository()),
         Provider(create: (_) => CurrentLocationRepository()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // title: Strings().getString(Strings.appName),
+        title: Strings.appName,
         theme: ThemeData(
-          appBarTheme: AppBarTheme(color: CustomColor.charlestonGreen),
           visualDensity: VisualDensity.adaptivePlatformDensity,
           accentColor: CustomColor.whiteSmoke,
           canvasColor: Colors.black,
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
             initGlobalAppLocalizations(context);
             return _homeRouteProvider(database);
           },
-          LocationRoute.routeName: (_) => _locationRouteProvider(),
+          DetailsRoute.routeName: (_) => _detailsRouteProvider(),
         },
       ),
     );
@@ -75,9 +75,9 @@ class MyApp extends StatelessWidget {
         child: const HomeRoute(),
       );
 
-  Widget _locationRouteProvider() => BlocProvider(
-        create: (_) => LocationCubit(const LocationRepository()),
-        child: const LocationRoute(),
+  Widget _detailsRouteProvider() => BlocProvider(
+        create: (_) => DetailsCubit(const DetailsRepository()),
+        child: const DetailsRoute(),
       );
 
   void initGlobalAppLocalizations(BuildContext context) {

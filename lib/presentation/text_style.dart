@@ -59,4 +59,16 @@ class CustomTextStyle {
       fontSize: 20.0,
       fontWeight: FontWeight.w700,
       color: Colors.red);
+
+  static const TextStyle brushScriptBold20 = TextStyle(
+      fontFamily: "BrushScript",
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      color: CustomColor.whiteSmoke);
+
+  static const TextStyle brushScriptBold28 = TextStyle(
+      fontFamily: "BrushScript",
+      fontSize: 28.0,
+      fontWeight: FontWeight.w700,
+      color: CustomColor.whiteSmoke);
 }

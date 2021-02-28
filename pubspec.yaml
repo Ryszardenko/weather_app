@@ -31,6 +31,7 @@ dependencies:
   dio: ^3.0.10
   geolocator: ^6.2.1
   material_floating_search_bar: ^0.2.6
+  animated_text_kit: ^3.1.2
   fluttertoast: ^7.1.8
   flutter_launcher_icons: ^0.8.1
   shared_preferences: ^0.5.12+4
@@ -95,6 +96,13 @@ flutter:
         - asset: assets/fonts/montserrat_semibold.ttf
           weight: 600
         - asset: assets/fonts/montserrat_bold.ttf
+          weight: 700
+
+    - family: BrushScript
+      fonts:
+        - asset: assets/fonts/nanum_brush_script.ttf
+          weight: 400
+        - asset: assets/fonts/nanum_brush_script.ttf
           weight: 700
 
   # To add custom fonts to your application, add a fonts section here,
